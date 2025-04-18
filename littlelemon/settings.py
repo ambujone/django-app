@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'restaurant',
 ]
 
 MIDDLEWARE = [
@@ -120,3 +121,11 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# Add STATICFILES_DIRS setting to tell Django where to find static files
+STATICFILES_DIRS = [
+    BASE_DIR / "static",
+]
+
+# Optional: Define STATIC_ROOT if you plan to use collectstatic
+# STATIC_ROOT = BASE_DIR / "staticfiles"
