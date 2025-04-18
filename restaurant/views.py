@@ -12,12 +12,24 @@ def index(request):
 class MenuItemsView(generics.ListCreateAPIView):
     queryset = Menu.objects.all()
     serializer_class = MenuSerializer
-    permission_classes = [IsAuthenticated]
+
+    def get_permissions(self):
+        # Allow GET requests without authentication
+        if self.request.method == 'GET':
+            return []
+        # Require authentication for other methods (POST, etc.)
+        return [IsAuthenticated()]
 
 class SingleMenuItemView(generics.RetrieveUpdateAPIView, generics.DestroyAPIView):
     queryset = Menu.objects.all()
     serializer_class = MenuSerializer
-    permission_classes = [IsAuthenticated]
+
+    def get_permissions(self):
+        # Allow GET requests without authentication
+        if self.request.method == 'GET':
+            return []
+        # Require authentication for other methods (PUT, PATCH, DELETE, etc.)
+        return [IsAuthenticated()]
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()

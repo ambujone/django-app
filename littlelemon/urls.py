@@ -16,6 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from restaurant.views import MenuItemsView, SingleMenuItemView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -23,4 +24,7 @@ urlpatterns = [
     # djoser endpoints
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.authtoken')),
+    # API endpoints
+    path('api/menu-items/', MenuItemsView.as_view()),
+    path('api/menu-items/<int:pk>/', SingleMenuItemView.as_view()),
 ]
